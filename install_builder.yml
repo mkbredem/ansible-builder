@@ -1,8 +1,8 @@
 ---
 - name: install builder and ensure EE projects are loaded from git
   hosts: "{{ target_hosts }}"
-  vars:
-    rep_url: 
+
+
   tasks:
     - name: install builder
       yum:
@@ -24,7 +24,7 @@
 
     - name: ensure ansible.cfg file exists
       template:
-        src: /templates/ansible.cfg.j2
+        src: templates/ansible.cfg.j2
         dest: /home/mkbredem/execution_ennironments/ansible.cfg
         mode: '0644'
         owner: root
