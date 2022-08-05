@@ -12,6 +12,11 @@
           - tree
         state: present
 
+    - name: remove execution_environments directory
+      file:
+        path: /home/mbredeme/execution_environments
+        state: absent
+
     - name: ensure EE projects directory exists
       git: 
         repo: https://github.com/mkbredem/ansible-builder.git
