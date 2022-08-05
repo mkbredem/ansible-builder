@@ -1,6 +1,8 @@
 ---
 - name: rerun EE's and sincy with container image repo
   hosts: "{{ target_hosts }}"
+  var: 
+    registry_url: quay.io/mbredeme
 
   tasks:  
     - name: get EE list
@@ -12,4 +14,9 @@
     - name: show r_ee_list
       debug:
         var: item [:-1]
+      loop: "{{ r_ee_list.stdout_lines }}"
+
+    - name: build EE's
+      shell:
+        cmd: ansible-builder build -v3 -t {{ registry_url }}/{{ item [:-1] }}
       loop: "{{ r_ee_list.stdout_lines }}"
