@@ -1,0 +1,6 @@
+---
+- name: create ee's
+  hosts: "{{ target_hosts }}"
+
+  tasks:  
+    - name: run 

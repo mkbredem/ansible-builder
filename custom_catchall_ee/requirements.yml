@@ -1,0 +1,4 @@
+---
+collections:
+  - name: dynatrace_innovationlab.dynatrace_collection
+  - name: dynatrace.oneagent
