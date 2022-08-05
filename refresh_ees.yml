@@ -19,4 +19,6 @@
     - name: build EE's
       shell:
         cmd: ansible-builder build -v3 -t {{ registry_url }}/{{ item [:-1] }}
+        chdir: /home/mbredeme/execution_environments/{{ item [:-1] }}
       loop: "{{ r_ee_list.stdout_lines }}"
+      
