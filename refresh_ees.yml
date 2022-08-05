@@ -11,5 +11,5 @@
 
     - name: show r_ee_list
       debug:
-        var: item [-1]
+        var: item [:-1]
       loop: "{{ r_ee_list.stdout_lines }}"
