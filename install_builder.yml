@@ -9,10 +9,10 @@
         name: 
           - ansible-builder
           - git
+          - tree
         state: present
 
     - name: ensure EE projects directory exists
       git: 
         repo: https://github.com/mkbredem/ansible-builder.git
         dest: /home/mbredeme/execution_environments
-

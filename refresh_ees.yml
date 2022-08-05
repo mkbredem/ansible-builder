@@ -1,0 +1,14 @@
+---
+- name: rerun EE's and sincy with container image repo
+  hosts: "{{ target_hosts }}"
+
+  tasks:  
+    - name: get EE list
+      shell:
+        cmd: ls -d */
+        chdir: /home/mbredeme/execution_environments
+      register: r_ee_list
+
+    - name: show r_ee_list
+      debug:
+        var: r_ee_list [-1]

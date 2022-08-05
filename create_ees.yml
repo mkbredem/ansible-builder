@@ -3,4 +3,7 @@
   hosts: "{{ target_hosts }}"
 
   tasks:  
-    - name: run 
+    - name: get list of EE
+      shell: 
+        cmd: ls -d */
+        chdir:
