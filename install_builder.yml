@@ -2,30 +2,5 @@
 - name: install builder and ensure EE projects are loaded from git
   hosts: "{{ target_hosts }}"
 
-
-  tasks:
-    - name: install builder
-      yum:
-        name: 
-          - ansible-builder
-          - git
-          - tree
-        state: present
-
-    - name: remove execution_environments directory
-      file:
-        path: /home/mbredeme/execution_environments
-        state: absent
-
-    - name: ensure EE projects directory exists
-      git: 
-        repo: https://github.com/mkbredem/ansible-builder.git
-        dest: /home/mbredeme/execution_environments
-
-    - name: ensure ansible.cfg file exists
-      template:
-        src: templates/ansible.cfg.j2
-        dest: /home/mkbredem/execution_ennironments/ansible.cfg
-        mode: '0644'
-        owner: root
-        group: root
+  roles:
+    - install_builder
