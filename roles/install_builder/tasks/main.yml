@@ -21,7 +21,7 @@
 - name: ensure ansible.cfg file exists
   template:
     src: templates/ansible.cfg.j2
-    dest: /home/mbredem/execution_ennironments/ansible.cfg
+    dest: /home/mbredeme/execution_ennironments/ansible.cfg
     mode: '0644'
     owner: root
     group: root
