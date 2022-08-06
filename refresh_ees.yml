@@ -16,9 +16,11 @@
         var: item [:-1]
       loop: "{{ r_ee_list.stdout_lines }}"
 
+    - name: login to registry.redhat.io
+      cmd: podman login -u {{ lookup('env', 'PORTAL_USERNAME') }} -p {{ lookup('env', 'PORTAL_PASSWORD') }} registry.redhat.io
+
     - name: build EE's
       shell:
         cmd: ansible-builder build -v3 -t {{ registry_url }}/{{ item [:-1] }}
         chdir: /home/mbredeme/execution_environments/{{ item [:-1] }}
       loop: "{{ r_ee_list.stdout_lines }}"
-      
