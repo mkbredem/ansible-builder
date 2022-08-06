@@ -1,9 +1,0 @@
----
-- name: create ee's
-  hosts: "{{ target_hosts }}"
-
-  tasks:  
-    - name: get list of EE
-      shell: 
-        cmd: ls -d */
-        chdir:
