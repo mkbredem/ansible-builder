@@ -20,7 +20,7 @@
       when: item [:-1] != 'roles'
 
     - name: login to registry.redhat.io
-      podman_login:
+      containers.podman.podman_login:
         username: "{{ lookup('env', 'PORTAL_USERNAME') }}"
         password: "{{ lookup('env', 'PORTAL_PASSWORD') }}"
         registry: "{{ base_image_registry_url }}"
