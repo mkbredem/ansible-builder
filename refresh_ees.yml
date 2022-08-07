@@ -19,7 +19,7 @@
       loop: "{{ r_ee_list.stdout_lines }}"
       when: item [:-1] != 'roles'
 
-    - name: login to registry.redhat.io
+    - name: login to {{ base_image_registry_url }}
       containers.podman.podman_login:
         username: "{{ lookup('env', 'PORTAL_USERNAME') }}"
         password: "{{ lookup('env', 'PORTAL_PASSWORD') }}"
@@ -33,6 +33,19 @@
     - name: build EE's
       shell:
         cmd: ansible-builder build -v3 -t {{ registry_url }}/{{ item [:-1] }}
+        chdir: /home/mbredeme/execution_environments/{{ item [:-1] }}
+      loop: "{{ r_ee_list.stdout_lines }}"
+      when: item [:-1] != 'roles'
+
+    - name: login to {{registry_url}}
+      containers.podman.podman_login:
+        username: "{{ lookup('env', 'PORTAL_USERNAME') }}"
+        password: "{{ lookup('env', 'PORTAL_PASSWORD') }}"
+        registry: "{{ registry_url }}"
+
+    - name: push images to {{registry_url}}
+      shell:
+        cmd: podman push {{ registry_url }}/{{ item [:-1] }}
         chdir: /home/mbredeme/execution_environments/{{ item [:-1] }}
       loop: "{{ r_ee_list.stdout_lines }}"
       when: item [:-1] != 'roles'
