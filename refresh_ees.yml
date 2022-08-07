@@ -17,7 +17,7 @@
       loop: "{{ r_ee_list.stdout_lines }}"
 
     - name: login to registry.redhat.io to pull ubi default minimal
-      cmd: "podman login -u {{ lookup('env', 'PORTAL_USERNAME') }} -p {{ lookup('env', 'PORTAL_PASSWORD') }} registry.redhat.io"
+      command: "podman login -u {{ lookup('env', 'PORTAL_USERNAME') }} -p {{ lookup('env', 'PORTAL_PASSWORD') }} registry.redhat.io"
 
     - name: build EE's
       shell:
