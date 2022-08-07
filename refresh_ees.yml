@@ -15,7 +15,7 @@
       debug:
         var: item [:-1]
       loop: "{{ r_ee_list.stdout_lines }}"
-      when: item [:-1] != roles
+      when: item [:-1] != 'roles'
 
     - name: login to registry.redhat.io to pull ubi default minimal
       shell:
