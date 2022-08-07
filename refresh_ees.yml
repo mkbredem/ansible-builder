@@ -43,7 +43,8 @@
         password: "{{ lookup('env', 'PORTAL_PASSWORD') }}"
         registry: "{{ registry_url }}"
 
-    - debug: place holder to ensure EE directoies exist in {{registry_url}} (using api)
+    - debug: 
+        msg: place holder to ensure EE directoies exist in {{registry_url}} (using api)
 
     - name: push images to {{registry_url}}
       shell:
@@ -52,4 +53,5 @@
       loop: "{{ r_ee_list.stdout_lines }}"
       when: item [:-1] != 'roles'
 
-    - debug: place holder to ensure EE's are loaded into tower
+    - debug: 
+        msg: place holder to ensure EE's are loaded into tower
