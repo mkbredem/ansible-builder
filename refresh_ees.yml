@@ -15,9 +15,12 @@
       debug:
         var: item [:-1]
       loop: "{{ r_ee_list.stdout_lines }}"
+      when: item [:-1] != roles
 
     - name: login to registry.redhat.io to pull ubi default minimal
-      command: "podman login -u {{ lookup('env', 'PORTAL_USERNAME') }} -p {{ lookup('env', 'PORTAL_PASSWORD') }} registry.redhat.io"
+      shell:
+        cmd: podman login -u {{ lookup('env', 'PORTAL_USERNAME') }} -p {{ lookup('env', 'PORTAL_PASSWORD') }} registry.redhat.io
+        chdir: /home/mbredeme/execution_environments
 
     - name: build EE's
       shell:
