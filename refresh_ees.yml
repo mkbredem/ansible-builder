@@ -3,12 +3,14 @@
   hosts: "{{ target_hosts }}"
   vars: 
     registry_url: quay.io/mbredeme
-
+    base_image_registry_url: registry.redhat.io
+    user_dir: /home/mbredeme 
+    
   tasks:  
     - name: get EE list
       shell:
         cmd: ls -d */
-        chdir: /home/mbredeme/execution_environments
+        chdir: "{{ user_dir }}/execution_environments"
       register: r_ee_list
 
     - name: show r_ee_list
@@ -17,10 +19,16 @@
       loop: "{{ r_ee_list.stdout_lines }}"
       when: item [:-1] != 'roles'
 
-    - name: login to registry.redhat.io to pull ubi default minimal
-      shell:
-        cmd: podman login -u {{ lookup('env', 'PORTAL_USERNAME') }} -p {{ lookup('env', 'PORTAL_PASSWORD') }} registry.redhat.io
-        chdir: /home/mbredeme/execution_environments
+    - name: login to registry.redhat.io
+      podman_login:
+        username: "{{ lookup('env', 'PORTAL_USERNAME') }}"
+        password: "{{ lookup('env', 'PORTAL_PASSWORD') }}"
+        registry: "{{ base_image_registry_url }}"
+
+#    - name: login to registry.redhat.io to pull ubi default minimal
+#      shell:
+#        cmd: podman login -u {{ lookup('env', 'PORTAL_USERNAME') }} -p {{ lookup('env', 'PORTAL_PASSWORD') }} registry.redhat.io
+#        chdir: /home/mbredeme/execution_environments
 
     - name: build EE's
       shell:
