@@ -7,28 +7,26 @@
     user_dir: /home/mbredeme 
     
   tasks:  
-    - name: get EE list
+    - name: get EE projects
       shell:
         cmd: ls -d */
         chdir: "{{ user_dir }}/execution_environments"
       register: r_ee_list
+      # EE projects are organized by folders ending with _ee
 
     - name: show r_ee_list
       debug:
         var: item [:-1]
       loop: "{{ r_ee_list.stdout_lines }}"
       when: item [:-1] != 'roles'
+      # the ./roles folder is not an EE project
 
     - name: login to {{ base_image_registry_url }}
       containers.podman.podman_login:
         username: "{{ lookup('env', 'PORTAL_USERNAME') }}"
         password: "{{ lookup('env', 'PORTAL_PASSWORD') }}"
         registry: "{{ base_image_registry_url }}"
-
-#    - name: login to registry.redhat.io to pull ubi default minimal
-#      shell:
-#        cmd: podman login -u {{ lookup('env', 'PORTAL_USERNAME') }} -p {{ lookup('env', 'PORTAL_PASSWORD') }} registry.redhat.io
-#        chdir: /home/mbredeme/execution_environments
+      # in order to pull down latest minimal rhel UBI
 
     - name: build EE's
       shell:
@@ -44,7 +42,9 @@
         registry: "{{ registry_url }}"
 
     - debug: 
-        msg: place holder to ensure EE directoies exist in {{registry_url}} (using api)
+        msg: 
+          - place holder to ensure EE directoies exist in {{registry_url}} (using api)
+          - for now ensure project exists in {{registry_url}}<ee_name>_ee
 
     - name: push images to {{registry_url}}
       shell:
@@ -54,4 +54,6 @@
       when: item [:-1] != 'roles'
 
     - debug: 
-        msg: place holder to ensure EE's are loaded into tower
+        msg: 
+          - place holder to ensure EE's are loaded into tower
+          - perhaps in another playbook so it can be reused
