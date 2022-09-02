@@ -4,7 +4,7 @@
   vars: 
     registry_url: quay.io/mbredeme
     base_image_registry_url: registry.redhat.io
-    user_dir: /home/ec2-user 
+    user_dir: /home/mbredeme 
     
   tasks:  
     - name: get EE projects
