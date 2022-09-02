@@ -1,3 +1,5 @@
-#---
-# collections:
-#   - name: 
+---
+collections:
+  - name: dynatrace_innovationlab.dynatrace_collection
+  - name: dynatrace.oneagent
+  - name: containers.podman

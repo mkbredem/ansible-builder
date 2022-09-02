@@ -1,8 +1,8 @@
 ---
 version: 1
 dependencies:
-  galaxy: requirements.yml
-  python: requirements.txt
+#  galaxy: requirements.yml
+#  python: requirements.txt
   system: bindep.txt
 
 build_arg_defaults:
