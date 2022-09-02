@@ -1,5 +1,5 @@
 ---
-- name: rerun EE's and sincy with container image repo
+- name: rerun EE's and sync with container image repo
   hosts: "{{ target_hosts }}"
   vars: 
     registry_url: quay.io/mbredeme
