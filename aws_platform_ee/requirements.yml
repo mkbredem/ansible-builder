@@ -1,0 +1,8 @@
+---
+collections:
+  - name: redhat.insights
+  - name: community.general
+  - name: amazon.aws
+  - name: servicenow.servicenow
+  - name: servicenow.itsm
+  - name: community.crypto
