@@ -6,3 +6,4 @@ collections:
   - name: servicenow.servicenow
   - name: servicenow.itsm
   - name: community.crypto
+  - name: ansible.posix.firewalld
