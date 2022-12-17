@@ -14,6 +14,13 @@
       register: r_ee_list
       # EE projects are organized by folders ending with _ee
 
+    - name: Change file ownership, group and permissions
+      ansible.builtin.file:
+        path: /home/{{ user_dir }}/execution_environments"
+        owner: mbredeme
+        group: mbredeme
+        mode: '0644'
+
     - name: show r_ee_list
       debug:
         var: item [:-1]
