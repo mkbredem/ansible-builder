@@ -4,21 +4,21 @@
   vars: 
     registry_url: quay.io/mbredeme
     base_image_registry_url: registry.redhat.io
-    user_dir: /home/mbredeme 
+    user: mbredeme
     
   tasks:  
     - name: get EE projects
       shell:
         cmd: ls -d */
-        chdir: "{{ user_dir }}/execution_environments"
+        chdir: /home/{{ user }}/execution_environments"
       register: r_ee_list
       # EE projects are organized by folders ending with _ee
 
     - name: Change file ownership, group and permissions
       ansible.builtin.file:
-        path: /home/{{ user_dir }}/execution_environments"
-        owner: mbredeme
-        group: mbredeme
+        path: /home/{{ user }}/execution_environments
+        owner: "{{ user }}"
+        group: "{{ user }}"
         mode: '0644'
 
     - name: show r_ee_list
