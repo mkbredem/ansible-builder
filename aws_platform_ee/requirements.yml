@@ -7,3 +7,4 @@ collections:
   - name: servicenow.itsm
   - name: community.crypto
   - name: ansible.posix
+  - name: ansible.windows
