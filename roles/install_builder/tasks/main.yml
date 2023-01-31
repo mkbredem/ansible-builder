@@ -17,11 +17,12 @@
   git: 
     repo: https://github.com/mkbredem/ansible-builder.git
     dest: /home/mbredeme/execution_environments
+  become: false
 
 - name: ensure ansible.cfg file exists
   template:
     src: templates/ansible.cfg.j2
     dest: /home/mbredeme/execution_environments/ansible.cfg
     mode: '0644'
-    owner: root
-    group: root
+    owner: mbredeme
+    group: mbredeme
