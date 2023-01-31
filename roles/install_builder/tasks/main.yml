@@ -17,7 +17,15 @@
   git: 
     repo: https://github.com/mkbredem/ansible-builder.git
     dest: /home/mbredeme/execution_environments
-  become: false
+
+- name: Recursively change ownership of execution_environments directory
+  ansible.builtin.file:
+    path: /home/mbredeme/execution_environments
+    state: directory
+    recurse: yes
+    owner: mbredeme
+    group: mbredeme
+    mode: '0644'
 
 - name: ensure ansible.cfg file exists
   template:
