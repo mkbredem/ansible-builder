@@ -8,3 +8,4 @@ collections:
   - name: community.crypto
   - name: ansible.posix
   - name: ansible.windows
+  - name: community.windows
