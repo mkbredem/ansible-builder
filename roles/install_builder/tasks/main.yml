@@ -25,7 +25,7 @@
     recurse: yes
     owner: mbredeme
     group: mbredeme
-    mode: '0644'
+    mode: '0755'
 
 - name: ensure ansible.cfg file exists
   template:
