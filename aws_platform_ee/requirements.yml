@@ -9,3 +9,4 @@ collections:
   - name: ansible.posix
   - name: ansible.windows
   - name: community.windows
+  - name: redhat.rhel_system_roles
