@@ -1,0 +1,8 @@
+---
+collections:
+  - name: redhat.insights
+  - name: amazon.aws
+  - name: servicenow.itsm
+  - name: ansible.posix
+  - name: ansible.windows
+  - name: redhat.rhel_system_roles

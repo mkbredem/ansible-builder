@@ -8,7 +8,7 @@ images:
 dependencies:
   galaxy:
     collections:
-      - ansible.netcommon
+      - name: ansible.netcommon
       - name: redhat.insights
       - name: redhatinsights.insights
       - name: community.general
@@ -20,6 +20,7 @@ dependencies:
       - name: ansible.windows
       - name: community.windows
       - name: redhat.rhel_system_roles
+      - name: ansible.controller
 
 options:
   package_manager_path: /usr/bin/microdnf
